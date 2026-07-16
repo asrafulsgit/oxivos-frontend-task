@@ -7,20 +7,9 @@ import { formatBDT } from "@/helpers/formateBDT";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCartItems, selectCartSubtotal } from "@/redux/hooks";
 import { clear, removeItem, updateQty } from "@/redux/slices/CartSlice";
-import { useEffect, useState } from "react";
 import { CartSkeleton } from "../ui/Skeleton";
 import useLoaing from "@/hooks/useLoading";
 
-// export const Route = createFileRoute("/cart")({
-//   head: () => ({
-//     meta: [
-//       { title: "Your Bag — ZARI" },
-//       { name: "description", content: "Review the pieces in your bag." },
-//       { name: "robots", content: "noindex" },
-//     ],
-//   }),
-//   component: CartPage,
-// });
 
 const Cart = () => {
   const dispatch = useDispatch();

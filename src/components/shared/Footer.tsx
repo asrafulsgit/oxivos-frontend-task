@@ -1,8 +1,8 @@
 "use client";
 const Footer = () => {
   return (
-    <footer className="border-t border-primary/10 pb-12 pt-24">
-      <div className="mx-auto mb-24 grid max-w-7xl grid-cols-1 gap-12 px-6 md:grid-cols-4">
+    <footer className="border-t border-primary/10 pb-8 sm:pb-12 pt-16 sm:pt-24">
+      <div className="mx-auto mb-16 sm:mb-24 grid max-w-7xl grid-cols-1 gap-8 sm:gap-12 px-6 md:grid-cols-4">
         <div className="col-span-1 md:col-span-2">
           <h4 className="mb-6 font-display text-2xl italic text-primary">
             Stay Connected

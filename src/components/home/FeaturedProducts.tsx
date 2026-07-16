@@ -4,7 +4,7 @@ import ProductCard from "../products/ProductCard";
 
 const FeaturedProducts = () => {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-32">
+    <section className="mx-auto max-w-7xl px-6 py-16 lg:py-32">
       <div className="mb-16 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="mb-3 text-[10px] uppercase tracking-[0.4em] text-primary">

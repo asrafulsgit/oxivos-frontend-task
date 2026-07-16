@@ -15,15 +15,15 @@ const RelatedProducts = ({
     .slice(0, 3);
   return (
     related.length > 0 && (
-      <section className="border-t border-primary/10 py-24">
+      <section className="border-t border-primary/10 py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-6">
           <p className="mb-3 text-[10px] uppercase tracking-[0.4em] text-primary">
             You Might Also Consider
           </p>
-          <h2 className="mb-12 font-display text-3xl italic text-primary-light">
+          <h2 className="mb-8 sm:mb-12 font-display text-3xl italic text-primary-light">
             More from {category}
           </h2>
-          <div className="grid grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-x-8 gap-y-9  sm:gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
             {related.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Categories = () => {
   return (
-    <section className="border-y border-primary/10 py-24">
+    <section className="border-y border-primary/10 py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-6">
         <p className="mb-12 text-[10px] uppercase tracking-[0.4em] text-primary">
           Shop by Category

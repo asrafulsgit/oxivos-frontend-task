@@ -13,52 +13,6 @@ import { toast } from "react-toastify";
 import { ProductDetailsSkeleton } from "../ui/Skeleton";
 import useLoading from "@/hooks/useLoading";
 
-// export const Route = createFileRoute("/products/$id")({
-//   loader: ({ params }) => {
-//     const product = getProductById(params.id);
-//     if (!product) throw notFound();
-//     return { product };
-//   },
-//   head: ({ loaderData }) => {
-//     if (!loaderData) {
-//       return {
-//         meta: [
-//           { title: "Piece not found — ZARI" },
-//           { name: "robots", content: "noindex" },
-//         ],
-//       };
-//     }
-//     const { product } = loaderData;
-//     return {
-//       meta: [
-//         { title: `${product.name} — ZARI` },
-//         { name: "description", content: product.description },
-//         { property: "og:title", content: `${product.name} — ZARI` },
-//         { property: "og:description", content: product.description },
-//         { property: "og:image", content: product.image },
-//         { property: "og:type", content: "product" },
-//       ],
-//     };
-//   },
-//   component: ProductPage,
-//   notFoundComponent: () => (
-//     <div className="mx-auto max-w-xl px-6 py-32 text-center">
-//       <p className="mb-3 text-[10px] uppercase tracking-[0.4em] text-primary">
-//         Not Found
-//       </p>
-//       <h1 className="mb-6 font-display text-4xl text-primary-light">
-//         This piece is no longer available.
-//       </h1>
-//       <Link
-//         to="/shop"
-//         className="border-b border-primary/40 pb-1 text-[11px] uppercase tracking-[0.25em] text-primary hover:text-primary-light"
-//       >
-//         Back to the collection
-//       </Link>
-//     </div>
-//   ),
-// });
-
 const ProductDetails = () => {
   const params = useParams();
   const router = useRouter();
@@ -110,7 +64,8 @@ const ProductDetails = () => {
 
   return (
     <div className="animate-fade-in">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-16 lg:grid-cols-2 lg:py-24">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 sm:gap-12 px-6 
+      py-10 sm:py-16 lg:grid-cols-2 lg:py-24">
         {/* Gallery */}
         <div className="space-y-4">
           <div className="aspect-[3/4] overflow-hidden bg-surface">
@@ -152,11 +107,11 @@ const ProductDetails = () => {
           <p className="mb-3 text-[10px] uppercase tracking-[0.4em] text-primary">
             {product.eyebrow}
           </p>
-          <h1 className="mb-4 font-display text-5xl leading-tight text-primary-light lg:text-6xl">
+          <h1 className="mb-4 font-display text-3xl sm:text-5xl leading-tight text-primary-light lg:text-6xl">
             {product.name}
           </h1>
 
-          <div className="mb-6 flex items-center gap-4">
+          <div className="mb-4 sm:mb-6 flex items-center gap-4">
             <span className="text-xl text-primary-light">
               {formatBDT(product.price)}
             </span>
@@ -166,12 +121,12 @@ const ProductDetails = () => {
             </span>
           </div>
 
-          <p className="mb-10 max-w-md text-sm leading-relaxed text-primary-light/70">
+          <p className="mb-6 sm:mb-10 max-w-md text-sm leading-relaxed text-primary-light/70">
             {product.description}
           </p>
 
           {/* Colors */}
-          <div className="mb-6">
+          <div className="mb-4 sm:mb-6">
             <p className="mb-3 text-[10px] uppercase tracking-[0.3em] text-primary-light/60">
               Color <span className="text-primary-light">— {color}</span>
             </p>
@@ -194,7 +149,7 @@ const ProductDetails = () => {
           </div>
 
           {/* Sizes */}
-          <div className="mb-8">
+          <div className="mb-4 sm:mb-6">
             <p className="mb-3 text-[10px] uppercase tracking-[0.3em] text-primary-light/60">
               Size <span className="text-primary-light">— {size}</span>
             </p>

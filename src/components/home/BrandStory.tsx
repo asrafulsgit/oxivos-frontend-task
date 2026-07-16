@@ -3,8 +3,8 @@ import craft from "@/assets/craft.jpg";
 
 const BrandStory = () => {
   return (
-    <section className="bg-surface py-32">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-16 px-6 lg:grid-cols-12">
+    <section className="bg-surface py-24 lg:py-32">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 md:gap-16 px-6 lg:grid-cols-12">
         <div className="lg:col-span-7">
           <span className="mb-8 block text-[10px] uppercase tracking-[0.4em] text-primary">
             The Craft
