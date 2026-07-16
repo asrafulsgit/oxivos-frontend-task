@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
-import { products } from "@/data/products";
 import useQueryManager from "@/hooks/useQueryManager";
 import { type Category } from "@/types/product";
 import { filteredProducts } from "@/helpers/getFilteredProducts";
@@ -45,12 +44,12 @@ const Products = () => {
   }, []);
 
   const filtered = useMemo(() => {
-    return filteredProducts(products, {
+    return filteredProducts({
       search,
       category,
       sort,
     });
-  }, [products, search, category, sort]);
+  }, [search, category, sort]);
 
   return (
     <div className="mx-auto w-full max-w-7xl px-6 py-16 md:py-24">

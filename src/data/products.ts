@@ -207,5 +207,4 @@ export const products: IProduct[] = [
   },
 ];
 
-
 export const getProductById = (id: string) => products.find((p) => p.id === id);

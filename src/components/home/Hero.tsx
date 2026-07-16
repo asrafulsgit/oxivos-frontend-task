@@ -20,22 +20,22 @@ const item: Variants = {
 
 const Hero = () => {
   return (
-    <section className="relative grid min-h-[calc(100vh-64px)] grid-cols-1 overflow-hidden lg:grid-cols-2">
+    <section className="relative mx-auto grid min-h-150 w-full max-w-7xl grid-cols-1 overflow-hidden px-4 py-10 sm:px-6 sm:py-14 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-0 xl:px-12">
       <motion.div
         variants={container}
         initial="hidden"
         animate="show"
-        className="z-10 flex flex-col justify-center px-8 py-24 lg:px-24 lg:py-0"
+        className="z-10 flex flex-col justify-center px-1 py-6 sm:py-8 lg:py-0"
       >
         <motion.span
           variants={item}
-          className="mb-6 text-[10px] font-medium uppercase tracking-[0.4em] text-primary"
+          className="mb-4 text-[10px] font-medium uppercase tracking-[0.4em] text-primary sm:mb-6"
         >
           Heritage / Handcrafted
         </motion.span>
         <motion.h1
           variants={item}
-          className="mb-8 text-balance font-display text-6xl leading-[0.9] tracking-tighter text-primary-light lg:text-8xl"
+          className="mb-6 max-w-xl text-balance text-center font-display text-5xl leading-[0.9] tracking-tighter text-primary-light sm:mb-8 sm:text-left sm:text-6xl md:text-7xl lg:text-8xl"
         >
           A Legacy in
           <br />
@@ -43,14 +43,14 @@ const Hero = () => {
         </motion.h1>
         <motion.p
           variants={item}
-          className="mb-10 max-w-md text-lg leading-relaxed text-primary-light/60"
+          className="mb-8 max-w-md text-base leading-relaxed text-primary-light/60 sm:mb-10 sm:text-lg"
         >
           The 2026 Collection explores the intersection of traditional zari
           embroidery and contemporary architectural tailoring — hand-stitched in
           our Old Dhaka atelier.
         </motion.p>
-        <motion.div variants={item}>
-          <Link href="/shop" className="group w-fit">
+        <motion.div variants={item} className="self-center sm:self-start">
+          <Link href="/products" className="group w-fit">
             <span className="text-sm uppercase tracking-widest text-primary-light">
               Explore the Collection
             </span>
@@ -62,13 +62,15 @@ const Hero = () => {
         initial={{ opacity: 0, scale: 1.05 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.4, ease: [0.19, 1, 0.22, 1] }}
-        className="relative min-h-[60vh] bg-surface lg:min-h-0"
+        className="relative min-h-[45vh] overflow-hidden rounded-[1.5rem] bg-surface sm:min-h-[55vh] lg:min-h-0 lg:rounded-none"
       >
         <Image
           src={hero}
           alt="Model in a black velvet Panjabi with gold zari embroidery"
           width={1200}
           height={1600}
+          priority
+          sizes="(max-width: 1024px) 100vw, 50vw"
           className="absolute inset-0 h-full w-full object-cover object-top"
         />
       </motion.div>

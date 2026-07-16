@@ -1,9 +1,7 @@
+import { products } from "@/data/products";
 import { IProduct } from "@/types/product";
 
-export function filteredProducts(
-  products: IProduct[],
-  queries: Record<string, any>,
-) {
+export function filteredProducts(queries: Record<string, any>) {
   let list = [...products];
 
   // Category
@@ -39,3 +37,6 @@ export function filteredProducts(
 
   return list;
 }
+
+export const getProductById = (id: string): IProduct | undefined =>
+  products.find((p) => p.id === id);
