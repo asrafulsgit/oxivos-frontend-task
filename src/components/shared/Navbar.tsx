@@ -4,6 +4,8 @@ import { useState } from "react";
 import Logo from "./Logo";
 import { Menu, Search, ShoppingBag } from "lucide-react";
 import { Category } from "@/types/product";
+import { useSelector } from "react-redux";
+import { selectCartCount } from "@/redux/hooks";
 
 const links: {
   category: Category | undefined;
@@ -15,7 +17,7 @@ const links: {
   { category: "Sherwani", label: "Sherwani" },
 ];
 const Navbar = () => {
-  const count = 0;
+  const count = useSelector(selectCartCount);
   const [open, setOpen] = useState(false);
 
   return (
@@ -79,7 +81,9 @@ const Navbar = () => {
             {links.map((l) => (
               <Link
                 key={l.label}
-                href={l.category ? `/products?category=${l.category}` : "/products"}
+                href={
+                  l.category ? `/products?category=${l.category}` : "/products"
+                }
                 onClick={() => setOpen(false)}
                 className="py-3 text-[11px] uppercase tracking-[0.25em] text-primary-light/80 hover:text-primary"
               >

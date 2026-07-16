@@ -3,12 +3,13 @@ import { useState } from "react";
 import { Check, Star } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { getProductById } from "@/helpers/getFilteredProducts";
-import { products } from "@/data/products";
 import Image from "next/image";
-import ProductCard from "../products/ProductCard";
 import { formatBDT } from "@/helpers/formateBDT";
 import { QuantityStepper } from "../ui/QuentityStepper";
 import RelatedProducts from "./RelatedProducts";
+import { useDispatch } from "react-redux";
+import { addItem } from "@/redux/slices/CartSlice";
+import { toast } from "react-toastify";
 
 // export const Route = createFileRoute("/products/$id")({
 //   loader: ({ params }) => {
@@ -59,8 +60,8 @@ import RelatedProducts from "./RelatedProducts";
 const ProductDetails = () => {
   const params = useParams();
   const router = useRouter();
+  const dispatch = useDispatch();
   const product = getProductById(params.id as string);
-
   const [size, setSize] = useState(product?.sizes[0]);
   const [color, setColor] = useState(product?.colors[0]);
   const [qty, setQty] = useState(1);
@@ -68,8 +69,19 @@ const ProductDetails = () => {
   const [added, setAdded] = useState(false);
 
   const handleAdd = () => {
-    if (!product?.inStock) return;
-
+    if (!product || !product?.inStock) return;
+    if (!size || !color) return toast.error("Size or Color is missing");
+    dispatch(
+      addItem({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        size,
+        color,
+        qty,
+      }),
+    );
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   };

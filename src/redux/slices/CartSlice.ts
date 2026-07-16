@@ -1,10 +1,11 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { StaticImageData } from "next/image";
 
 export interface CartItem {
   id: string;
   name: string;
   price: number;
-  image: string;
+  image: string | StaticImageData;
   size: string;
   color: string;
   qty: number;
@@ -55,13 +56,15 @@ const cartSlice = createSlice({
       action: PayloadAction<{ id: string; size: string; color: string }>,
     ) {
       const { id, size, color } = action.payload;
-      state = state.filter(
+
+      return state.filter(
         (i) =>
           getUniqueId(i.id, i.size, i.color) !== getUniqueId(id, size, color),
       );
     },
-    clear(state) {
-      state = [];
+
+    clear() {
+      return [];
     },
   },
 });

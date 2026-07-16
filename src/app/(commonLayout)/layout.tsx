@@ -1,5 +1,8 @@
+"use client"
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
+import { Provider as ReduxProvider } from "react-redux";
+import { store } from "@/redux/store";
 
 export default function RootLayout({
   children,
@@ -7,10 +10,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex min-h-svh flex-col">
-      <Navbar />
-      <main className="flex-1">{children}</main>
-      <Footer />
-    </div>
+    <ReduxProvider store={store}>
+      <div className="flex min-h-svh flex-col">
+        <Navbar />
+        <main className="flex-1">{children}</main>
+        <Footer />
+      </div>
+    </ReduxProvider>
   );
 }
