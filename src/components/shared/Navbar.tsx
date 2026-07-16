@@ -4,74 +4,87 @@ import { useState } from "react";
 import Logo from "./Logo";
 import { Menu, Search, ShoppingBag } from "lucide-react";
 
-const navItems = [
-  { name: "Home", href: "/" },
-  { name: "Collections", href: "/products" },
-  { name: "The Panjabi Edit", href: "/products" },
+const links: {
+  to: "/shop";
+  search: Record<string, string> | undefined;
+  label: string;
+}[] = [
+  { to: "/shop", search: undefined, label: "Shop All" },
+  { to: "/shop", search: { category: "Panjabi" }, label: "Panjabi" },
+  { to: "/shop", search: { category: "Kurta" }, label: "Kurta" },
+  { to: "/shop", search: { category: "Sherwani" }, label: "Sherwani" },
 ];
-
 const Navbar = () => {
   const count = 0;
   const [open, setOpen] = useState(false);
-  const mobileNavItems = [
-    ...navItems,
-    { name: `Cart (${count})`, href: "/cart" },
-  ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-brand-bg/80 backdrop-blur-md border-b border-brand-text/5">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <Logo />
-        <div className="hidden md:flex space-x-10 text-[13px] uppercase tracking-widest font-medium">
-          {navItems.map((item) => (
+    <nav className="sticky top-0 z-50 border-b border-primary/20 bg-background/85 backdrop-blur-md">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+        {/* Left side*/}
+        <div className="hidden items-center gap-8 text-[11px] font-medium uppercase tracking-[0.2em] lg:flex">
+          {links.map((l) => (
             <Link
-              key={item.name}
-              href={item.href}
-              className="hover:text-brand-accent transition-colors"
+              key={l.label}
+              href={l.to}
+              className="text-primary-light/80 transition-colors hover:text-primary"
             >
-              {item.name}
+              {l.label}
             </Link>
           ))}
         </div>
-        <div className="flex items-center gap-5">
+
+        <button
+          className="lg:hidden text-primary-light"
+          onClick={() => setOpen((o) => !o)}
+          aria-label="Toggle menu"
+        >
+          {open ? <Menu className="size-5" /> : <Menu className="size-5" />}
+        </button>
+
+        <Logo />
+
+        {/* Right side*/}
+        <div className="flex items-center gap-5 text-sm">
           <Link
-            href="/products"
-            className="hidden sm:flex items-center gap-2 text-brand-text/50 hover:text-brand-text transition-colors"
+            href="/shop"
+            className="hidden text-primary-light/80 transition-colors hover:text-primary sm:inline-flex"
+            aria-label="Search"
           >
-            <Search className="size-4" strokeWidth={1.5} />
-            <span className="text-xs uppercase tracking-widest">Search</span>
+            <Search className="size-4" />
           </Link>
           <Link
             href="/cart"
-            className="relative flex items-center gap-2 hover:text-brand-accent transition-colors"
+            className="relative flex items-center gap-2 text-primary-light/80 transition-colors hover:text-primary"
           >
-            <ShoppingBag className="size-5" strokeWidth={1.5} />
+            <ShoppingBag className="size-4" />
+            <span className="text-[11px] uppercase tracking-[0.2em] hidden sm:inline">
+              Bag
+            </span>
             {count > 0 && (
-              <span className="absolute -top-2 -right-2 size-4 bg-brand-accent text-white text-[10px] rounded-full flex items-center justify-center font-bold">
+              <span className="ml-0.5 grid size-4 place-items-center rounded-full bg-primary text-[9px] font-medium text-background">
                 {count}
               </span>
             )}
           </Link>
-          <button
-            className="md:hidden"
-            onClick={() => setOpen((o) => !o)}
-            aria-label="Menu"
-          >
-            <Menu className="size-5" strokeWidth={1.5} />
-          </button>
         </div>
       </div>
+
+      {/* Mobile */}
       {open && (
-        <div className="md:hidden border-t border-brand-text/5 px-6 py-4 flex flex-col gap-4 text-sm uppercase tracking-widest bg-brand-bg">
-          {mobileNavItems.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              onClick={() => setOpen(false)}
-            >
-              {item.name}
-            </Link>
-          ))}
+        <div className="border-t border-primary/10 bg-background lg:hidden">
+          <div className="mx-auto flex max-w-7xl flex-col gap-1 px-6 py-4">
+            {links.map((l) => (
+              <Link
+                key={l.label}
+                href={l.to}
+                onClick={() => setOpen(false)}
+                className="py-3 text-[11px] uppercase tracking-[0.25em] text-primary-light/80 hover:text-primary"
+              >
+                {l.label}
+              </Link>
+            ))}
+          </div>
         </div>
       )}
     </nav>

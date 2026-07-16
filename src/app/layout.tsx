@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { Inter, Cormorant_Garamond } from "next/font/google";
+import { Karla, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
 
-const inter = Inter({
-  variable: "--font-sans",
+const karla = Karla({
+  variable: "--font-body",
   subsets: ["latin"],
 });
 
 const cormorant = Cormorant_Garamond({
-  variable: "--font-serif",
+  variable: "--font-display",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
 });
@@ -27,9 +27,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${inter.variable} h-full antialiased`}
+      className={`${cormorant.variable} ${karla.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="flex min-h-screen flex-col bg-background text-primary-light">
         <Navbar />
         {children}
       </body>
