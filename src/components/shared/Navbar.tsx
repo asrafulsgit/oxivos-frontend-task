@@ -3,16 +3,16 @@ import Link from "next/link";
 import { useState } from "react";
 import Logo from "./Logo";
 import { Menu, Search, ShoppingBag } from "lucide-react";
+import { Category } from "@/types/product";
 
 const links: {
-  to: "/shop";
-  search: Record<string, string> | undefined;
+  category: Category | undefined;
   label: string;
 }[] = [
-  { to: "/shop", search: undefined, label: "Shop All" },
-  { to: "/shop", search: { category: "Panjabi" }, label: "Panjabi" },
-  { to: "/shop", search: { category: "Kurta" }, label: "Kurta" },
-  { to: "/shop", search: { category: "Sherwani" }, label: "Sherwani" },
+  { category: undefined, label: "Shop All" },
+  { category: "Panjabi", label: "Panjabi" },
+  { category: "Kurta", label: "Kurta" },
+  { category: "Sherwani", label: "Sherwani" },
 ];
 const Navbar = () => {
   const count = 0;
@@ -26,7 +26,9 @@ const Navbar = () => {
           {links.map((l) => (
             <Link
               key={l.label}
-              href={l.to}
+              href={
+                l.category ? `/products?category=${l.category}` : "/products"
+              }
               className="text-primary-light/80 transition-colors hover:text-primary"
             >
               {l.label}
@@ -47,7 +49,7 @@ const Navbar = () => {
         {/* Right side*/}
         <div className="flex items-center gap-5 text-sm">
           <Link
-            href="/shop"
+            href="/products"
             className="hidden text-primary-light/80 transition-colors hover:text-primary sm:inline-flex"
             aria-label="Search"
           >
@@ -77,7 +79,7 @@ const Navbar = () => {
             {links.map((l) => (
               <Link
                 key={l.label}
-                href={l.to}
+                href={l.category ? `/products?category=${l.category}` : "/products"}
                 onClick={() => setOpen(false)}
                 className="py-3 text-[11px] uppercase tracking-[0.25em] text-primary-light/80 hover:text-primary"
               >

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Karla, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
+import Footer from "@/components/shared/Footer";
 
 const karla = Karla({
   variable: "--font-body",
@@ -32,6 +33,7 @@ export default function RootLayout({
       <body className="flex min-h-screen flex-col bg-background text-primary-light">
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );
