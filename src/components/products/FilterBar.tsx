@@ -14,7 +14,7 @@ export function FilterBar({
   category: Category | "All";
   sort: SortMode;
 }) {
-  const { setQuery,clearQuery } = useQueryManager();
+  const { setQuery, clearQuery } = useQueryManager();
   const cats: (Category | "All")[] = ["All", ...CATEGORIEITEMS];
 
   const handleSearch = (value: string) => {
@@ -36,7 +36,7 @@ export function FilterBar({
 
       {/* Category chips + Sort */}
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-        <div className="flex flex-wrap gap-2">
+        <div className="hidden lg:flex flex-wrap gap-2">
           {cats.map((c) => {
             const active = category === c;
             return (
@@ -55,14 +55,27 @@ export function FilterBar({
             );
           })}
         </div>
-        <div className="flex items-center gap-3">
-          <label className="text-[10px] uppercase tracking-[0.25em] text-primary-light/50">
-            Sort
-          </label>
+        <select
+          value={category}
+          onChange={(e) => setQuery("category", e.target.value as SortMode)}
+          className="block lg:hidden border border-primary/25 bg-background p 
+            p-2 text-[11px] uppercase tracking-[0.2em] 
+            text-primary-light outline-none focus:border-primary"
+        >
+
+          {cats.map((c) => {
+            return (
+              <option value={c} key={c}>{c}</option>
+            );
+          })}
+        </select>
+        <div className="flex items-center gap-2">
           <select
             value={sort}
             onChange={(e) => setQuery("sort", e.target.value as SortMode)}
-            className="border border-primary/25 bg-background px-3 py-2 text-[11px] uppercase tracking-[0.2em] text-primary-light outline-none focus:border-primary"
+            className="border border-primary/25 bg-background p 
+            p-2 text-[11px] uppercase tracking-[0.2em] 
+            text-primary-light outline-none focus:border-primary"
           >
             <option value="featured">Featured</option>
             <option value="asc">Price · Low to High</option>

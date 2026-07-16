@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectCartItems, selectCartSubtotal } from "@/redux/hooks";
 import { clear, removeItem, updateQty } from "@/redux/slices/CartSlice";
 import { useEffect, useState } from "react";
+import { CartSkeleton } from "../ui/Skeleton";
+import useLoaing from "@/hooks/useLoading";
 
 // export const Route = createFileRoute("/cart")({
 //   head: () => ({
@@ -24,22 +26,9 @@ const Cart = () => {
   const dispatch = useDispatch();
   const items = useSelector(selectCartItems);
   const subtotal = useSelector(selectCartSubtotal);
-  const [loading, setLoading] = useState(true);
-
-  // loading for skeleton
-  useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 500);
-    return () => clearTimeout(t);
-  }, []);
-
+  const loading = useLoaing();
   if (loading) {
-    return (
-      <div className="mx-auto max-w-xl px-6 py-32 text-center">
-        <p className="text-[10px] uppercase tracking-[0.4em] text-primary/60">
-          Loading your bag…
-        </p>
-      </div>
-    );
+    return <CartSkeleton />;
   }
 
   if (!items || items.length === 0) {

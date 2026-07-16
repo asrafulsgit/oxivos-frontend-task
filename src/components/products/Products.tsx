@@ -6,6 +6,7 @@ import { filteredProducts } from "@/helpers/getFilteredProducts";
 import { FilterBar, SortMode } from "./FilterBar";
 import { SkeletonGrid } from "../ui/Skeleton";
 import ProductCard from "./ProductCard";
+import useLoading from "@/hooks/useLoading";
 
 // export const Route = createFileRoute("/shop")({
 //   validateSearch: searchSchema,
@@ -35,13 +36,7 @@ const Products = () => {
     | "All"
     | Category;
   const sort = ((getQuery("sort") as SortMode) ?? "featured") as SortMode;
-  const [loading, setLoading] = useState(true);
-
-  // loading for skeleton
-  useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 500);
-    return () => clearTimeout(t);
-  }, []);
+  const loading = useLoading();
 
   const filtered = useMemo(() => {
     return filteredProducts({

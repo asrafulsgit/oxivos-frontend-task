@@ -10,6 +10,8 @@ import RelatedProducts from "./RelatedProducts";
 import { useDispatch } from "react-redux";
 import { addItem } from "@/redux/slices/CartSlice";
 import { toast } from "react-toastify";
+import { ProductDetailsSkeleton } from "../ui/Skeleton";
+import useLoading from "@/hooks/useLoading";
 
 // export const Route = createFileRoute("/products/$id")({
 //   loader: ({ params }) => {
@@ -67,7 +69,7 @@ const ProductDetails = () => {
   const [qty, setQty] = useState(1);
   const [activeImg, setActiveImg] = useState(product?.images[0]);
   const [added, setAdded] = useState(false);
-
+  const loading = useLoading();
   const handleAdd = () => {
     if (!product || !product?.inStock) return;
     if (!size || !color) return toast.error("Size or Color is missing");
@@ -85,6 +87,10 @@ const ProductDetails = () => {
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   };
+
+  if (loading) {
+    return <ProductDetailsSkeleton />;
+  }
 
   if (!product) {
     return (

@@ -57,10 +57,11 @@ const cartSlice = createSlice({
     ) {
       const { id, size, color } = action.payload;
 
-      return state.filter(
+      const newState = state.filter(
         (i) =>
           getUniqueId(i.id, i.size, i.color) !== getUniqueId(id, size, color),
       );
+      return newState;
     },
 
     clear() {
