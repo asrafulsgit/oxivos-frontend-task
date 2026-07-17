@@ -47,7 +47,7 @@ const ProductCard = ({
         <p className="mb-1 text-[9px] uppercase tracking-[0.25em] text-primary">
           {product.eyebrow}
         </p>
-        <h3 className="mb-1 font-display text-xl text-primary-light">
+        <h3 className="mb-1 font-display text-base sm:text-xl text-primary-light">
           {product.name}
         </h3>
         <p className="text-xs font-light text-primary-light/60">

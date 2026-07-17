@@ -7,7 +7,10 @@ import { FilterBar, SortMode } from "./FilterBar";
 import { SkeletonGrid } from "../ui/Skeleton";
 import ProductCard from "./ProductCard";
 import useLoading from "@/hooks/useLoading";
+import Pagination from "../shared/Pagination";
+import { products } from "@/data/products";
 
+const DEFAULT_LIMIT = 6;
 
 const Products = () => {
   const { getQuery, clearQuery } = useQueryManager();
@@ -18,6 +21,8 @@ const Products = () => {
     | Category;
   const sort = ((getQuery("sort") as SortMode) ?? "featured") as SortMode;
   const loading = useLoading();
+  const page = Number(getQuery("page")) || 1;
+  const limit = Number(getQuery("limit")) || DEFAULT_LIMIT;
 
   const filtered = useMemo(() => {
     return filteredProducts({
@@ -26,6 +31,11 @@ const Products = () => {
       sort,
     });
   }, [search, category, sort]);
+
+  const paginated = useMemo(() => {
+    const start = (page - 1) * limit;
+    return filtered.slice(start, start + limit);
+  }, [filtered, page, limit]);
 
   return (
     <div className="mx-auto w-full max-w-7xl px-6 py-10 md:py-24">
@@ -43,11 +53,19 @@ const Products = () => {
       {loading ? (
         <SkeletonGrid n={9} />
       ) : filtered.length ? (
-        <div className="grid grid-cols-1 gap-x-8 gap-y-9 sm:gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((p, i) => (
-            <ProductCard key={p.id} product={p} index={i} />
-          ))}
-        </div>
+        <>
+          <div
+            className="grid gap-x-4 sm:gap-x-8 gap-y-9 sm:gap-y-16 
+          grid-cols-2 lg:grid-cols-3"
+          >
+            {paginated.map((p, i) => (
+              <ProductCard key={p.id} product={p} index={i} />
+            ))}
+          </div>
+          <div className="mt-10 sm:mt-20">
+            <Pagination totalItems={filtered.length} />
+          </div>
+        </>
       ) : (
         <div className="border border-primary/15 py-24 text-center">
           <p className="mb-2 text-[10px] uppercase tracking-[0.3em] text-primary">

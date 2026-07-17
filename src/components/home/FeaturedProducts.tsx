@@ -22,7 +22,7 @@ const FeaturedProducts = () => {
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 gap-x-8 gap-y-10  sm:gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid  gap-x-4 sm:gap-x-8 gap-y-10  sm:gap-y-16 grid-cols-2 lg:grid-cols-3">
         {featuredProducts.map((p, i) => (
           <ProductCard key={p.id} product={p} index={i} />
         ))}
