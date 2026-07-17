@@ -48,7 +48,7 @@ const Products = () => {
         </h1>
       </div>
 
-      <FilterBar search={search} category={category} sort={sort} />
+      <FilterBar search={search} category={category} sort={sort} limit={limit}/>
 
       {loading ? (
         <SkeletonGrid n={9} />

@@ -9,10 +9,12 @@ export function FilterBar({
   search,
   category,
   sort,
+  limit = 6
 }: {
   search: string;
   category: Category | "All";
   sort: SortMode;
+  limit : number
 }) {
   const { setQuery, clearQuery } = useQueryManager();
   const cats: (Category | "All")[] = ["All", ...CATEGORIEITEMS];
@@ -73,7 +75,7 @@ export function FilterBar({
           <select
             value={sort}
             onChange={(e) => setQuery("sort", e.target.value as SortMode)}
-            className="border border-primary/25 bg-background p 
+            className="max-w-35 border border-primary/25 bg-background  
             p-2 text-[11px] uppercase tracking-[0.2em] 
             text-primary-light outline-none focus:border-primary"
           >
@@ -81,11 +83,22 @@ export function FilterBar({
             <option value="asc">Price · Low to High</option>
             <option value="desc">Price · High to Low</option>
           </select>
+          <select
+            value={limit}
+            onChange={(e) => setQuery("limit", e.target.value as string)}
+            className="min-w-15 border border-primary/25 bg-background   
+            p-2 text-[11px] uppercase tracking-[0.2em] 
+            text-primary-light outline-none focus:border-primary"
+          >
+            <option value="6">6</option>
+            <option value="12">12</option>
+            <option value="18">18</option>
+          </select>
           <button
             onClick={() => {
               clearQuery();
             }}
-            className="ml-2 cursor-pointer px-3 py-2 text-[11px] uppercase tracking-[0.2em] bg-transparent border border-primary/20 text-primary-light hover:bg-primary/5"
+            className="cursor-pointer px-3 py-2 text-[11px] uppercase tracking-[0.2em] bg-transparent border border-primary/20 text-primary-light hover:bg-primary/5"
           >
             Clear
           </button>
